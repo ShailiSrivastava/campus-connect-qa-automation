@@ -1,0 +1,91 @@
+.cc-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 28px;
+  margin: 0 auto;
+  backdrop-filter: blur(24px);
+  background: rgba(8, 14, 35, 0.92);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.cc-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1, #38bdf8);
+  color: #fff;
+}
+
+.cc-brand strong {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.1;
+}
+
+.cc-brand span {
+  display: block;
+  font-size: 0.82rem;
+  color: rgba(226, 232, 240, 0.72);
+}
+
+.cc-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cc-links a,
+.cc-logout {
+  font-size: 0.95rem;
+  padding: 10px 16px;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.cc-links a {
+  color: rgba(226, 232, 240, 0.88);
+}
+
+.cc-links a.active,
+.cc-links a:hover {
+  background: rgba(56, 189, 248, 0.16);
+  color: #fff;
+}
+
+.cc-logout {
+  border: none;
+  color: #fff;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  box-shadow: 0 16px 36px rgba(56, 189, 248, 0.18);
+}
+
+.cc-logout:hover {
+  background: linear-gradient(135deg, #60a5fa, #4f46e5);
+}
+
+@media (max-width: 720px) {
+  .cc-navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cc-links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
