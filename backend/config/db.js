@@ -1,16 +1,28 @@
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
-  if (process.env.MONGO_URI) {
+  const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI;
+
+  if (mongoUri) {
     try {
-      await mongoose.connect(process.env.MONGO_URI, {
-        serverSelectionTimeoutMS: 4000
+      await mongoose.connect(mongoUri, {
+        serverSelectionTimeoutMS: 5000,
       });
-      console.log("MongoDB Connected");
+      console.log("MongoDB Connected successfully.");
       return;
     } catch (error) {
-      console.warn("Could not connect to configured MONGO_URI, attempting MongoMemoryServer fallback for local testing...", error.message);
+      console.error("MongoDB connection error:", error.message);
+      if (process.env.NODE_ENV === "production") {
+        console.error("FATAL: Failed to connect to MongoDB instance in production mode.");
+        process.exit(1);
+      }
+      console.warn("Attempting MongoMemoryServer fallback for local testing...");
     }
+  }
+
+  if (process.env.NODE_ENV === "production") {
+    console.error("FATAL: MONGODB_URI or MONGO_URI environment variable is not defined in production.");
+    process.exit(1);
   }
 
   try {
@@ -25,4 +37,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connectDB;
